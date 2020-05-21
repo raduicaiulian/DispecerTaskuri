@@ -1,0 +1,100 @@
+body {
+  background-color: #dbd6d6;
+	margin: 0;
+}
+.maincontainer{
+	font-size: 18px;
+	position: absolute;
+	padding: 80px 0 50px 0;
+	background-color: #ffffffe6;
+	width: 700px;
+	text-align: center;
+	transform: translate(-50%,-50%);
+	top: 50%;
+	left: 50%;
+	border-radius: 10px;
+}
+.line{
+	position: relative;
+	margin-top: 40px;
+
+}
+.btn_sub, .btn, .btn_no_hover{
+	display: inline-block;
+	width: 150px;
+	margin: 0 auto;
+	padding: 8px;
+	font-size: 18px;
+	border: none;
+	text-decoration: none;
+	background-color: black;
+	color: #fff;
+}
+
+.btn:hover, .btn_sub:hover{
+	background-color: #fff;
+	color: black;
+	scale: .9;
+	transition: all .5s;
+}
+
+.fbt{
+	margin-top: 20px;
+}
+
+.btn_no_hover{
+	display: inline-block;
+	width: 150px;
+	margin: 0 auto;
+	padding: 8px;
+	font-size: 18px;
+	border: none;
+	text-decoration: none;
+	background-color: #a6a6a6;
+	color: #fff;
+}
+
+#username, #password{
+	position: absolute;
+	margin-left: -120px;
+	margin-top: 5px;
+	color: #989494;
+	transition: 0.2s ease all;
+	pointer-events: none;
+}
+
+#username_inp, #password_inp{
+	width: 180px;
+	border: solid #bcbebf 1px;
+	border-radius: 6px;
+	padding: 8px 10px;
+	text-align: center;
+}
+
+#username_inp:focus ~ #username,
+#username_inp:not(:focus):valid ~ #username,
+#password_inp:focus ~ #password,
+#password_inp:not(:focus):valid ~ #password{
+	margin-left: -164px;
+	margin-top: -25px;
+	scale: .8;
+	color: black;
+}
+
+.invalid{/*login button on username invalid*/
+	background-color: rgb(0,0,0,0);
+	color: red;
+	font-size: 14px;
+	right: 5px;
+}
+
+.valid{/*login button on username valid*/
+	background-color: rgb(0,0,0,0);
+	color: green;
+	font-size: 14px;
+	right: 5px;
+}
+.desing_img {
+    position: absolute;
+    height: 98%;
+}

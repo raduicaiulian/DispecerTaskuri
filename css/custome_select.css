@@ -1,0 +1,18 @@
+/*center options made with selet2 */
+.select2-container--default .select2-results > .select2-results__options{
+	scrollbar-width: thin;
+	text-align: center;	/*centreaza elemetele din dropdwnuri*/
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field{/*dropdown elements width*/ 
+	width: 95px;
+}
+
+.select2-container--default .select2-search--dropdown .select2-search__field {
+	/*search box bolder*/
+	border: 0;
+	border-bottom-color: currentcolor;
+	border-bottom-style: none;
+	border-bottom-width: 0px;
+	border-bottom: 1px solid #aaa;
+}

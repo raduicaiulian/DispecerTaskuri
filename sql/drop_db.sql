@@ -1,0 +1,1 @@
+DROP DATABASE dispecer_taskuri;

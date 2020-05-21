@@ -1,0 +1,89 @@
+body {
+  background-color: #dbd6d6;
+	margin: 0;
+}
+
+.desing_img {
+    position: absolute;
+    height: 98%;
+}
+
+.RecPassbox{
+	font-size: 18px;
+	position: absolute;
+	padding: 70px 0 50px 0;
+	background-color: #ffffffe6;
+	width: 500px;
+	text-align: center;
+	transform: translate(-50%,-50%);
+	top: 50%;
+	left: 50%;
+	border-radius: 50px;
+}
+
+.spatiere_top{
+	position: relative;
+	margin-top: 60px;
+}
+
+.spatiere_PWD{
+	position: relative;
+	margin-top: 40px;
+}
+
+.button{
+	display: inline-block;
+	width: 150px;
+	margin: 0 auto;
+	padding: 7px;
+	font-size: 18px;
+	border: none;
+	text-decoration: none;
+	background-color: black;
+	color: #fff;
+}
+
+.button:hover{
+	background-color: #fff;
+	color: black;
+	scale: .9;
+	transition: all .5s;
+}
+
+
+#email, #parola, #parola1{
+	width: 50%;
+	border: solid #bcbebf 1px;
+	border-radius: 6px;
+	padding: 8px 10px;
+	text-align: center;
+  background: transparent;
+  outline: none;
+  color: black;
+  font-size: 16px;
+}
+
+.fail{
+  color: red;
+}
+
+.succes{
+  color: green;
+}
+
+.nolive_Error {
+	background-color: rgb(0,0,0,0);
+	color: green;
+	font-size: 14px;
+	right: 5px;
+}
+
+.live_Error {
+	background-color: rgb(0,0,0,0);
+	color: red;
+	font-size: 14px;
+	/*width: 177px;
+	display: inline-block;
+	position: absolute;*/
+	right: 5px;
+}

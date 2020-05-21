@@ -1,0 +1,63 @@
+<label for="maxlevel" class="elem">Max level</label>
+<input id="maxlevel" type="text" name="maxlevel" placeholder="Max level" autocomplete="off">
+<br></br>
+<label for="nume_echipa" class="elem">Nume echipa</label>
+<input id="nume_echipa" type="text" name="nume_echipa" placeholder="Nume echipa" autocomplete="off">
+<br></br>
+<label for="skill_echipa" class="elem">Skill-uri echipa</label>
+<input id="skill_echipa" type="text" name="skill_echipa" placeholder="Skill-uri echipa" autocomplete="off">
+<ul id="lista_skills"></ul>
+<br></br>
+<span onclick="newSkill()" class="addSkill">Add Skill</span>
+<input id="create_team" type="submit" class="addSkill" name="Sumbit">
+
+<script>
+	//$(document).ready(function(){
+		var ul = document.getElementById("lista_skills");
+		var liArray = ul.getElementsByTagName("li");
+		for (var i = 0; i < liArray.length; i++) {
+			//la creearea unui nou skill in lista adauga unicode-ul pentru X care il va sterge
+			var span = document.createElement("SPAN");
+			var semn = document.createTextNode("\u00D7");
+			//fiecare X va avea tag-ul close pentru a putea adauga asupra fiecarui X cu un for eventul pe onclick (stergere task)
+			span.className = "close";
+			//folosim appendChild pentru a putea pune in li semnul
+			span.appendChild(semn);
+			lista_de_skilluri[i].appendChild(span);
+		}
+		//iterare peste X-uri
+		var lista_xuri = document.getElementsByClassName("close");
+		for (var i = 0; i < lista_xuri.length; i++) {
+			lista_xuri[i].onclick = function() {
+				// sterge parintele X-ului (li-ul)
+				var div = this.parentElement;
+				div.remove();
+			}
+		}
+		function newSkill() {
+			var skill = document.createElement("li"); //Crearea unui nou element in lista
+			var inputValue = document.getElementById("skill_echipa").value; //Input-ul
+			var skill_text = document.createTextNode(inputValue); //Creeaza text-ul din interiorul elementului unei liste
+			skill.appendChild(skill_text);
+			if (inputValue === '') {
+				alert("Introduceti un skill !");
+			} else {
+				document.getElementById("lista_skills").appendChild(skill);
+			}
+			document.getElementById("skill_echipa").value = ""; //Scoate din input skill-ul adaugat anterior
+
+			var span = document.createElement("SPAN");
+			var semn = document.createTextNode("\u00D7");
+			span.className = "close";
+			span.appendChild(semn);
+			skill.appendChild(span);
+
+			for (i = 0; i < lista_xuri.length; i++) {
+				lista_xuri[i].onclick = function() {
+					var div = this.parentElement;
+					div.remove();
+				}
+			}
+		}
+
+</script>
