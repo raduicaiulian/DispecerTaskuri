@@ -157,7 +157,7 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 					div.append("Nume: "+result[i]['nume'] + "<br></br>"+ "Prenume: "+result[i]['prenume']+ "<br></br>"+"Mail: "+ result[i]['mail']);
 					mydiv2.append(div);}
 				mydiv2.append("<button id='show_reset' type='button'>Reset your password</button>");
-				$( "#show_reset" ).click(function show_reset(){
+				$( "#show_reset" ).click(function show_reset(){//click pe butonul de schimbare parola din account setings
 					if ($("#old_password").length!=0){
 						oldpassword=$("#old_password").val();
 						newpassword=$("#new_password").val();
@@ -165,7 +165,8 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 						$.ajax({ type: "POST", async: false, cache: false, url: "../php/manager/reset_password_ui.php", data: { oldpassword: oldpassword, newpassword: newpassword, newpassword2:newpassword2 },
 								success: function(data){
 									//la succes
-							     	console.log("nice man");
+							     	if(data=='0')
+										succes_notify("Parola schimbată cu succes!");
 							 		$("#reset_input").remove();
 								},
 				  				error: function plm(){
@@ -181,13 +182,15 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 	 	   				}
 				});
 				mydiv2.append("<button id='show_rmail' type='button'>Reseteaza mail-ul</button>");
-				$("#show_rmail" ).click(function show_reset2(){
+				$("#show_rmail" ).click(function show_reset2(){//click pe butonul de schimbare email din account setings
 					if ($("#old_password2").length!=0){
 						oldpassword2=$("#old_password2").val();
 						newmail=$("#new_mail").val();
 						$.ajax({ type: "POST", async: false, cache: false, url: "../php/manager/reset_mail_ui.php", data: { oldpassword2: oldpassword2, newmail: newmail },
 							success: function(data){
 								//la succes
+								if(data=='0')
+									succes_notify("Email-ul schimbat cu succes!");
 					 			$("#reset_input").remove();
 							},
 							error: function plm2(){

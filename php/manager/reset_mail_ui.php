@@ -19,7 +19,7 @@ validari mail
 */
 $sql2="UPDATE user SET mail = '$mail' WHERE id='".$id."';";
 if($conn->query($sql2))
-	die("10"); // Mail schimbat cu succes
+	die("0"); // Mail schimbat cu succes
 else
 	die("11"); // Eroare baza de date
 

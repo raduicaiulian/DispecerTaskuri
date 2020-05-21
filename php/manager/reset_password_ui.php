@@ -30,7 +30,7 @@ $hashednew = hash("sha512",$newpass);
 
 $sql2="UPDATE user SET password = '$hashednew' WHERE id='".$id."';";
 if($conn->query($sql2))
-	die("10"); // Parola schimbata cu succes
+	die("0"); // Parola schimbata cu succes
 else
 	die("11"); // Eroare baza de date
 
