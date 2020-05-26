@@ -111,3 +111,16 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	bottom: 0;
 	width:50%;
 }
+#scroll_container_nume{
+	font-size: x-large;
+	padding: 30px;
+	position: relative;
+}
+#scroll_container_deadline, #scroll_container_time{
+	padding-left: 15px;
+	position: relative;
+	text-align: left;
+}
+#scroll_container_descriere, #scroll_container_sugestii{
+	padding: 50px 0 0 0;
+}
