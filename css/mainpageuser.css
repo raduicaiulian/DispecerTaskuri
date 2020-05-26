@@ -47,7 +47,7 @@ body {
 	position: absolute;
 	right: 0;
 	height: calc(100% - 48.400px);
-	background-color: purple;
+	background-color: whitesmoke;
 	display:inline-block;
 }
 
@@ -122,5 +122,21 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	text-align: left;
 }
 #scroll_container_descriere, #scroll_container_sugestii{
-	padding: 50px 0 0 0;
+	margin: 50px auto;
+	width: 80%;
+	text-align: center;
+	border: solid 2px darkorange;
+	word-wrap: break-word;
+}
+.user_image{
+	width: 20px;
+	height: 20px;
+	position: absolute;
+	right: 5px;
+	bottom: 5px;
+}
+#descriere{
+	position: absolute;
+	margin-top: -5px;
+	left: 20px;
 }

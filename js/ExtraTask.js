@@ -4,6 +4,7 @@ $(document).ready(function(){
 		$.ajax({url: "../php/ExtraTasks.php", async: false, success: function(result){//afiseaza taskuri nealocate din echipele mele
 			console.log(result);
 			$("#l_menu_2").empty();
+			$("#scroll_container").empty();
 			result= JSON.parse(result);
 			for( var i =0 ; i <result.length ; i++)
 			{
@@ -123,7 +124,7 @@ $(document).ready(function(){
 					mydiv.append(divitem);
 				//}
 			}
-
+			
 
 		}});
 	});
