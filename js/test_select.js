@@ -4,13 +4,14 @@ function handleSelectUserExtraTask(id_first_select, id_secound_select){
   console.log(first_object_id.value);
   secound_object_id = document.getElementById(id_secound_select);
   console.log(secound_object_id.value);
-  
-  
-  $.ajax({type: "GET",url: "../php/Sortare.php", async: false,data : { "echipa":first_object_id.value, "autoritate":secound_object_id.value }, success: function(result){
-			$("#l_menu_2").empty();
 
-			//result= JSON.parse(result);
-			console.log(result);
+
+  $.ajax({type: "GET",url: "../php/Sortare.php", async: false,data : { "echipa":first_object_id.value, "criteriu":secound_object_id.value }, success: function(result){
+			$("#l_menu_2").empty();
+      console.log(result);
+      //throw("String");
+      //result= JSON.parse(result);
+			//console.log(result);
 			result= JSON.parse(result);
 			for( var i =0 ; i <result.length ; i++)
 			{
@@ -40,22 +41,22 @@ function handleSelectUserExtraTask(id_first_select, id_secound_select){
 				div.setAttribute("id","scroll_container_nume");
 				div.append(result[indexElement]['nume']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_deadline");
 				div.append(result[indexElement]['deadline']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_time");
 				div.append(result[indexElement]['time']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_descriere");
 				div.append(result[indexElement]['descriere']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_sugestii");
 				div.append(result[indexElement]['sugestii']);

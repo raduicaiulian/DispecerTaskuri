@@ -34,22 +34,22 @@ $(document).ready(function(){
 				div.setAttribute("id","scroll_container_nume");
 				div.append(result[indexElement]['nume']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_deadline");
 				div.append(result[indexElement]['deadline']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_time");
 				div.append(result[indexElement]['time']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_descriere");
 				div.append(result[indexElement]['descriere']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_sugestii");
 				div.append(result[indexElement]['sugestii']);
@@ -60,7 +60,7 @@ $(document).ready(function(){
 			result= JSON.parse(result);
 			$("#l_menu_3").empty();
 			mydiv = document.getElementById("l_menu_3");
-			
+
 
 			ceva_div = document.createElement('div');
 			ceva_div.setAttribute('id','dropstyle');
@@ -70,25 +70,39 @@ $(document).ready(function(){
 			newselect.setAttribute("id","dropdownstyle1");
 			newselect.setAttribute('onchange','handleSelectUserExtraTask("dropdownstyle1","dropdownstyle2")'); // listener embeeded
 
+			newOption = document.createElement("option");
+			newOption.setAttribute('class','team_selector');
+			newOption.setAttribute('value', "0");
+			newOptionVal = document.createTextNode("Toate Echipele");
+			newOption.appendChild(newOptionVal);
+			newselect.insertBefore(newOption,newselect.firstChiled);
+
+
 			for(var i=0;i<result.length;i++)
 			{
+
 				newOption = document.createElement("option");
 				newOption.setAttribute('class','team_selector');
 				newOption.setAttribute('value', result[i]['id']);
-
 				newOptionVal = document.createTextNode(result[i]['team_name']);
-
 				newOption.appendChild(newOptionVal);
-				newselect.insertBefore(newOption,newselect.firstChiled);
+				newselect.insertBefore(newOption,newselect.lastChiled);
+
 			}
 			ceva_div.append(newselect);
 
 
 			var newselect = document.createElement("select");
 			newselect.setAttribute("id","dropdownstyle2");
-			
+
 			newselect.setAttribute('onchange','handleSelectUserExtraTask("dropdownstyle1","dropdownstyle2")'); // listener embeeded
-			
+
+			newOption = document.createElement("OPTION");
+			newOption.setAttribute('class','sort_selector');
+			newOptionVal = document.createTextNode('Default');
+			newOption.appendChild(newOptionVal);
+			newselect.insertBefore(newOption,newselect.firstChiled);
+
 			newOption = document.createElement("OPTION");
 			newOption.setAttribute('class','sort_selector');
 			newOptionVal = document.createTextNode('Prioritate');
@@ -102,7 +116,7 @@ $(document).ready(function(){
 			newselect.insertBefore(newOption,newselect.firstChiled);
 			ceva_div.append(newselect);
 			mydiv.append(ceva_div);
-		
+
 		}});
 
 	});
@@ -124,7 +138,7 @@ $(document).ready(function(){
 					mydiv.append(divitem);
 				//}
 			}
-			
+
 
 		}});
 	});

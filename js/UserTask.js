@@ -1,15 +1,15 @@
 $(document).ready(function(){
 	document.getElementById("btn1").addEventListener("click",function(){
-		
+
 		$.ajax({url: "../php/UserTasks.php", success: function(result){
 			$("#l_menu_2").empty();
 			$("#scroll_container").empty();
 			//console.log(result);
-			//throw new Error("Something went badly wrong!");  Pentru debug 
+			//throw new Error("Something went badly wrong!");  Pentru debug
 			result= JSON.parse(result);
 			for( var i =0 ; i <result.length ; i++)
-			{	
-				
+			{
+
 				mydiv = document.getElementById("l_menu_2");
 				var divitem = document.createElement('div');
 				divitem.setAttribute("class","a1");
@@ -25,7 +25,7 @@ $(document).ready(function(){
 						divitem.append(elem);
 					mydiv.append(divitem);
 			}
-			
+
 			$(".a1").click(function(){
 				$("#scroll_container").empty();
 				indexElement=$(this).index();
@@ -36,22 +36,22 @@ $(document).ready(function(){
 				div.setAttribute("id","scroll_container_nume");
 				div.append(result[indexElement]['nume']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_deadline");
 				div.append(result[indexElement]['deadline']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_time");
 				div.append(result[indexElement]['time']);
 				mydiv.append(div);
-				
+
 				/*var div = document.createElement('span');
 				div.setAttribute("span","descriere");
 				div.append("Descriere");
 				mydiv.append(div);*/
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_descriere");
 				var descriere = document.createElement('span');
@@ -60,7 +60,7 @@ $(document).ready(function(){
 				div.append(descriere);
 				div.append(result[indexElement]['descriere']);
 				mydiv.append(div);
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_sugestii");
 				var sugestii = document.createElement('span');
@@ -69,13 +69,13 @@ $(document).ready(function(){
 				div.append(sugestii);
 				div.append(result[indexElement]['sugestii']);
 				mydiv.append(div);
-				
+
 				//mydiv=$("#scroll_container");
 				//mydiv.append("<span class='descriere'>Descriere</span>");
-				
+
 			});
 		}});
-		
+
 		$.ajax({url: "../php/echipe_angajat.php", async: false, success: function(result){//creeaza butoanele de sortare, in functie de echipele din care fac parte
 			result= JSON.parse(result);
 			$("#l_menu_3").empty();
@@ -105,9 +105,9 @@ $(document).ready(function(){
 
 			var newselect = document.createElement("select");
 			newselect.setAttribute("id","dropdownstyle2");
-			
+
 			newselect.setAttribute('onchange','handleSelectUserTask("dropdownstyle1","dropdownstyle2")'); // listener embeeded
-			
+
 			newOption = document.createElement("OPTION");
 			newOption.setAttribute('class','sort_selector');
 			newOptionVal = document.createTextNode('Prioritate');
@@ -121,9 +121,9 @@ $(document).ready(function(){
 			newselect.insertBefore(newOption,newselect.firstChiled);
 			ceva_div.append(newselect);
 			mydiv.append(ceva_div);
-		
+
 		}});
-		
-		
+
+
 	});
 });
