@@ -27,8 +27,8 @@ $(document).ready(function(){
 			}
 			console.log(result);
 			$(".user_image").click(function(){
-				console.log($(".user_image").index($(this)));    // id = cheia care va ajunge in php, iar result[id] este valoarea din javascript
-				$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index()]["id_task"]}, success: function(result2){
+				    // id = cheia care va ajunge in php, iar result[id] este valoarea din javascript
+				$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))]["id_task"]}, success: function(result2){
 					console.log(result2);
 				}});
 				$(this).parent().remove();
