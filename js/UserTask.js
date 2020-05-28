@@ -25,7 +25,14 @@ $(document).ready(function(){
 						divitem.append(elem);
 					mydiv.append(divitem);
 			}
-
+			console.log(result);
+			$(".user_image").click(function(){
+				    // id = cheia care va ajunge in php, iar result[id] este valoarea din javascript
+				$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))]["id_task"]}, success: function(result2){
+					console.log(result2);
+				}});
+				$(this).parent().remove();
+			});
 			$(".a1").click(function(){
 				$("#scroll_container").empty();
 				indexElement=$(this).index();
@@ -74,6 +81,7 @@ $(document).ready(function(){
 				//mydiv.append("<span class='descriere'>Descriere</span>");
 
 			});
+
 		}});
 
 		$.ajax({url: "../php/echipe_angajat.php", async: false, success: function(result){//creeaza butoanele de sortare, in functie de echipele din care fac parte
@@ -98,8 +106,9 @@ $(document).ready(function(){
 				newOptionVal = document.createTextNode(result[i]['team_name']);
 
 				newOption.appendChild(newOptionVal);
-				newselect.insertBefore(newOption,newselect.firstChiled);
+				newselect.insertBefore(newOption,newselect.lastChiled);
 			}
+
 			ceva_div.append(newselect);
 
 

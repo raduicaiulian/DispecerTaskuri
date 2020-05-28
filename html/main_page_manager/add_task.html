@@ -1,37 +1,18 @@
+<style>
+#skill_list{
+	display: inline-grid;
+	grid-template-columns: auto auto;
+	grid-column-gap: 12px;
+}
+</style>
 	<div class="line">
 		<label for="nume" class="elem">Nume</label>
 		<input id="numetask" type="text" name="numetask" placeholder="Nume task" autocomplete="off">
-
+		<select class="team">
+			<!--se completează bazat pe date de pe server -->
+		</select>
 		<div class="skillnecesar">Skill-uri necesare</div>
-		<select class="limbaj" multiple="multiple" name="Limbaj">
-			<option value="1">JAVA</option>
-			<option value="2">PYTHON</option>
-			<option value="3">C++</option>
-		</select>
-
-		<select name="Level">
-			<option>Level</option>
-			<option value="1">1</option>
-			<option value="2">2</option>
-			<option value="3">3</option>
-			<option value="4">4</option>
-			<option value="5">5</option>
-			<option value="6">6</option>
-			<option value="7">7</option>
-			<option value="8">8</option>
-			<option value="9">9</option>
-			<option value="10">10</option>
-			<option value="11">11</option>
-			<option value="12">12</option>
-			<option value="13">13</option>
-			<option value="14">14</option>
-			<option value="15">15</option>
-			<option value="16">16</option>
-			<option value="17">17</option>
-			<option value="18">18</option>
-			<option value="19">19</option>
-			<option value="20">20</option>
-		</select>
+		<!--select for skill and level-->
 
 	</div>
 	<div class="line">
@@ -41,26 +22,26 @@
 	<div class="line">
 		<div class="elem">Descriere task</div>
 
-		<textarea name="descriere" rows = "3"
+		<textarea id="descriere" rows = "3"
 		  cols = "80"></textarea>
 	</div>
 	<div class="line">
 		<div class="select">Deadline</div>
 		<!--date-->
-		<input type="date" id="start" name="trip-start" value="2018-07-22" min="1999-01-01" max="2099-01-01">
+		<input type="date" id="date" name="trip-start" value="2018-07-22" min="1999-01-01" max="2099-01-01">
 		<!--date-->
 		<!--time-->
-		<input type="time" id="appt" name="appt">
+		<input type="time" id="time" name="appt">
 		<!--time-->
 	<div class="line">
 		<div class="elem">Sugestii</div>
 
-		<textarea name="sugestii" rows = "3"
+		<textarea id="sugestii" name="sugestii" rows = "3"
 		  cols = "80"></textarea>
 	</div>
 	<div class="line">
 		<div class="select">Prioritate</div>
-		<select name="prioritate">
+		<select id="prioritate">
 			<option>Prioritate</option>
 			<option value="0">Scazuta</option>
 			<option value="1">Medie</option>
@@ -69,17 +50,125 @@
 
 		</select>
 	</div>
-		<input type="submit" name="submit" value="Submit">
+		<input id="submit" type="submit">
 <script>
+$(document).ready(function() {
 
-  $(".limbaj").select2({//customizare select multiplu pentru add task
-      tags: true,
-      placeholder: "Limbaj de programare",
-      allowClear: true,
-      tokenSeparators: [',', ' ']
-  })
-  $(".limbaj ").change(function(){
-	console.log("schimbat");
-	console.log($(this).val());
-  });
+var error=function(msg){$.notify(msg, {//asign error pop-up to use later
+		className:"error",
+		clickToHide: true,
+		showDuration: 60,
+		globalPosition: 'top right'
+	});}
+	var succes_notify=function(msg){$.notify(msg, {//asign error pop-up to use later
+		className:"success",
+		clickToHide: true,
+		showDuration: 60,
+		globalPosition: 'top right'
+	});}
+
+	remove_skill=function(this_ptr){//remove skill from skill list
+		console.log($(".skill").index($(this_ptr).parent()));
+		$(this_ptr).parent().remove();
+		//console.log(obj.attr("src"));
+		//	console.log($("#skill").index());
+	};
+
+	//incarca echipele în selectul de selectare echipa din cadrul(adauga task)
+	$.ajax({ type: "POST", async: false, cache: false, url: "../php/manager/load_teams.php",dataType:"html",dataType:"json",
+		success: function(result){
+			$(".team").html('<option value="0">Team</option>');
+			for(var i=0; i<result.length;i++)
+				$(".team").append('<option name="'+result[i]['id']+'">'+result[i]['team_name']+'</option>');
+				
+			$(".skillnecesar").after('<img id="add_skill" style="width: 30px;" src="../images/plus_sign.png">');
+			$("#add_skill").click(function(){//adauga skill
+				if($("#skill_list").length!=0){
+					//console.log("prima adaugare");
+					$("#skill_list").append('<div class="skill"><select class="limbaj"name="Limbaj"><option value="1">Limbaj</option></select><select class="level"><option>Level</option></select><img class="skill_rm" onclick="remove_skill(this)" style="width: 20px" src="../images/x.png"></div>');
+				}else{
+					//console.log("else adaugare");
+					$("#add_skill").after('<br><div id="skill_list"><div class="skill"><select class="limbaj"name="Limbaj"><option value="1">Limbaj</option></select><select class="level"><option>Level</option></select><img class="skill_rm" onclick="remove_skill(this)" style="width: 20px" src="../images/x.png"></div></div>');
+				}
+			});
+			
+				
+				
+		},
+		error: function(){
+			console.log("request failed");
+			error("eroare de retea");
+		}
+	});
+
+	$(".team").change(function(){//when team is changed load skils of team and elvels based on team
+		team_id=$(this).find('option:selected').attr("name");
+		//load skils
+		$.ajax({ type: "POST", async: false, cache: false, url: "../php/manager/load_skils_of_team.php", data: {team_id: team_id},dataType:"json",
+			success: function(result1){
+				$(".limbaj").html('<option value="0">Limbaj</option>');
+				for(var i=0;i<result1.length;i++)
+					$(".limbaj").append('<option value="'+result1[i]['nume_skill']+'">'+result1[i]['nume_skill']+"</option>");
+			},
+			error: function(){
+				console.log("request failed");
+			}
+		});
+		//load evels
+		$.ajax({ type: "POST", async: false, cache: false, url: "../php/manager/get_max_level.php", data: {team_id: team_id},dataType:"json",
+			success: function(result1){
+				$(".level").html('<option value="0">Level</option>');
+				for(var i=0;i<=result1[0]['max_level'];i++)
+					$(".level").append('<option value="'+(i+1)+'">'+(	i+1)+"</option>");
+			},
+			error: function(){
+				console.log("request failed");
+			}
+		});
+	});
+	$("#submit").click(function(){//la click pe butonul de submit
+		//extract data
+		nume_task=$("#numetask").val();
+		team_id=$(".team option:selected").attr('name');//get id of team from name tag
+		//extract all skills and levels
+		skills=[]//all skils alocated for task
+		levels=[]//all levels coresponding to skills
+		$(".skill").children(".limbaj").each(function(){skills.push([$(this).val()]);});
+		$(".skill").children(".level").each(function(){levels.push($(this).val());});
+		descriere=$("#descriere").val();
+		date=$("#date").val();
+		time=$("#time").val();
+		suggestions=$("#sugestii").val();
+		priority=$("#prioritate").val();
+		
+		/*console.log(nume_task);
+		console.log(team);
+		console.log(descriere);
+		console.log(skills);
+		console.log(levels);
+		console.log(date);
+		console.log(time);
+		console.log(suggestions);
+		console.log(priority);*/
+		//add task in database
+		$.ajax({ type: "POST", async: false, cache: false, url: "../php/manager/add_task.php",
+			data:{nume_task:nume_task, team_id:team_id, skills:skills, levels:levels, descriere:descriere, date:date, time:time,suggestions:suggestions,priority:priority},/*dataType:"json",*/
+			success: function(result){
+				/*$(".team").html('<option value="0">Team</option>');
+				for(var i=0; i<result.length;i++)
+					$(".team").append('<option name="'+result[i]['id']+'">'+result[i]['team_name']+'</option>');*/
+				console.log(result);
+				if(result==1)
+					error("Un task cu acest nume există deja în baza de date!");
+				if(result==0)
+					succes_notify("task adăugat cu succes!");
+			},
+			error: function(){
+				console.log("request failed");
+			}
+		});
+	
+	});
+	
+});
 </script>
