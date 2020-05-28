@@ -3,6 +3,7 @@ $(document).ready(function(){
 		
 		$.ajax({url: "../php/UserTasks.php", success: function(result){
 			$("#l_menu_2").empty();
+			$("#scroll_container").empty();
 			//console.log(result);
 			//throw new Error("Something went badly wrong!");  Pentru debug 
 			result= JSON.parse(result);
@@ -18,6 +19,10 @@ $(document).ready(function(){
 					spanelement.append(result[i]['deadline']);
 					divitem.append(spanelement);
 					divitem.append('\n');
+						var elem = document.createElement('img');
+						elem.setAttribute('class','user_image');
+						elem.setAttribute("src","../images/x.png");
+						divitem.append(elem);
 					mydiv.append(divitem);
 			}
 			
@@ -42,15 +47,32 @@ $(document).ready(function(){
 				div.append(result[indexElement]['time']);
 				mydiv.append(div);
 				
+				/*var div = document.createElement('span');
+				div.setAttribute("span","descriere");
+				div.append("Descriere");
+				mydiv.append(div);*/
+				
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_descriere");
+				var descriere = document.createElement('span');
+				descriere.setAttribute("id","descriere");
+				descriere.append("Descriere");
+				div.append(descriere);
 				div.append(result[indexElement]['descriere']);
 				mydiv.append(div);
 				
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_sugestii");
+				var sugestii = document.createElement('span');
+				sugestii.setAttribute("id","descriere");
+				sugestii.append("Sugestii");
+				div.append(sugestii);
 				div.append(result[indexElement]['sugestii']);
 				mydiv.append(div);
+				
+				//mydiv=$("#scroll_container");
+				//mydiv.append("<span class='descriere'>Descriere</span>");
+				
 			});
 		}});
 		

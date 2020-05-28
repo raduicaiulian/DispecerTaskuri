@@ -4,6 +4,7 @@ $(document).ready(function(){
 		$.ajax({url: "../php/ExtraTasks.php", async: false, success: function(result){//afiseaza taskuri nealocate din echipele mele
 			console.log(result);
 			$("#l_menu_2").empty();
+			$("#scroll_container").empty();
 			result= JSON.parse(result);
 			for( var i =0 ; i <result.length ; i++)
 			{
@@ -105,9 +106,26 @@ $(document).ready(function(){
 		}});
 
 	});
-		/*$.ajax({url: "../php/first_select.php", async: false, success: function(result){
+	document.getElementById("teams").addEventListener("click",function(){
+		$.ajax({url: "../php/echipe_angajat.php", async: false, success: function(result){
+			console.log(result);
+			$("#l_menu_3").empty();
+			$("#l_menu_2").empty();
+			result= JSON.parse(result);
+			for( var i =0 ; i <result.length ; i++)
+			{
+				//console.log(result[i]);
+				mydiv = document.getElementById("l_menu_2");
+				var divitem = document.createElement('div');
+				divitem.setAttribute("class","a1");
+				divitem.append(result[i]['team_name']);
+				//for ( var key in result[i])
+				//{
+					mydiv.append(divitem);
+				//}
+			}
+			
 
-
-
-		})*/
+		}});
+	});
 });

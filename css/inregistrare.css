@@ -1,58 +1,58 @@
 body {
-	background-color: #dbd6d6;
-	margin: 0;
+    background-color: #dbd6d6;
+    margin: 0;
 }
 
 .elem:after {
-	content: "*";
-	color: red;
-	display: inline-block;
-	text-indent: 9px;
+    content: "";
+    color: red;
+    display: inline-block;
+    text-indent: 9px;
 }
 
 .elem, .elem2 {
-	float: left;
-	margin-left: 50px;
+    float: left;
+    margin-left: 50px;
 }
 
 .maincontainer {
-	font-size: 18px;
-	position: absolute;
-	padding: 60px 0 20px 0;
-	background-color: #ffffffe6;
-	width: 700px;
-	text-align: center;
-	transform: translate(-50%,-50%);
-	top: 50%;
-	left: 50%;
+    font-size: 18px;
+    position: absolute;
+    padding: 60px 0 20px 0;
+    background-color: #ffffffe6;
+    width: 700px;
+    text-align: center;
+    transform: translate(-50%,-50%);
+    top: 50%;
+    left: 50%;
 }
 
 .line {
-	padding: 14px 0;
+    padding: 14px 0;
 }
 
 input[type="submit"] {
-	width: 180px;
-	font-size: 18px;
-	margin: 20px auto;
-	background: #000;
-	color: white;
-	border: 0;
-	padding: 14px;
+    width: 180px;
+    font-size: 18px;
+    margin: 20px auto;
+    background: #000;
+    color: white;
+    border: 0;
+    padding: 14px;
   }
-  
+
 input[type="text"], input[type="password"], input[type="email"]{
-	border: solid #bcbebf 1px;
-	text-align: center;
-	font-size: 16px;
-	border-radius: 6px;
-	padding: 8px 10px;
-	width: 210px;
+    border: solid #bcbebf 1px;
+    text-align: center;
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 8px 10px;
+    width: 210px;
 }
  
 select{
-	font-size: 16px;
-	border: solid 1px black;
+    font-size: 16px;
+    border: solid 1px black;
 }
  
 input[type="submit"]:hover, select:hover, input[type="radio"]:hover {
@@ -60,7 +60,7 @@ input[type="submit"]:hover, select:hover, input[type="radio"]:hover {
 }
 
 input[type="submit"]:hover{
-		background: #1e9106;
+        background: #1e9106;
 }
 
 input[type="submit"]:hover {
@@ -71,11 +71,11 @@ input[type="submit"]:hover {
 }
 
 .desing_img {
-	position: absolute;
-	height: 98%;
+    position: absolute;
+    height: 98%;
 }
 input{
-	background-color: white;
+    background-color: white;
 }
 
 input:focus:invalid{
@@ -91,22 +91,21 @@ input[type="text"]:valid, input[type="password"]:valid, input[type="email"]:vali
   border: 1px solid #7ae67a;
 }
 
-/*css te test*/
+/css te test/
 
 .noerror {
-	background-color: rgb(0,0,0,0);
-	color: green;
-	font-size: 14px;
-	right: 5px;
+    background-color: rgb(0,0,0,0);
+    color: green;
+    font-size: 14px;
+    right: 5px;
 }
 
 .error {
-	background-color: rgb(0,0,0,0);
-	color: red;
-	font-size: 14px;
-	/*width: 177px;
-	display: inline-block;
-	position: absolute;*/
-	right: 5px;
+    background-color: rgb(0,0,0,0);
+    color: red;
+    font-size: 14px;
+    /width: 177px;
+    display: inline-block;
+    position: absolute;/
+    right: 5px;
 }
-/*in lucru*/
