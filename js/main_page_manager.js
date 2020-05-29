@@ -17,7 +17,7 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 	});}
 	
 	$( "#teams" ).click(function load_l_menu() { //Display teams in sidebar on click event
-	
+		$("#l_menu > img").remove();//sterge imaginile butoane din partea stanga jos
 		$.ajax({url: "../php/manager/load_teams.php",async: false, cache: false, dataType:"json",
 			success: function(result){
 				$("#l_menu_2").empty();//sterge contentul din meniul lateral
@@ -88,7 +88,7 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 					});
 				});
 				
-				mydiv.append($("<img id='add_team' src='../images/add_team.png'>"));//end append add team button after teams
+				$("#l_menu").append($("<img id='add_team' src='../images/add_team.png'>"));//end append add team button after teams
 			},
 			error: function(){
 				console.log("request failed");
@@ -131,20 +131,39 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 		});
 	}); 
 	
-	$( "#tasks" ).click(function load_l_menu() {//load tasks
-		$.ajax({ type: "POST", async: false, cache: false, url: "../html/main_page_manager/add_task.html",dataType:"html",
-			success: function(result){
-				$("#l_menu_2").empty();
-				$("#l_menu_2").append("aici vin taskurile grupate pe echipe");//clear l_menu
-				$("#scroll_container").html(result);
-			},
-			error: function(){
-				console.log("request failed");
-				error("eroare de retea");
-			}
+	$( "#tasks" ).click(function load_l_menu() {//la click pe tasks button
+		$("#l_menu > img").remove();//sterge imaginile butoane din partea stanga jos
+		mydiv.empty();
+		$("#l_menu").append($("<img id='add_task' src='../images/add_task.png'>"));
+		$("#l_menu").append($("<img id='spread_tasks' src='../images/spread_t.svg'>"));
+		$("#add_task").click(function(){//la lick pe add task button
+			$.ajax({ type: "POST", async: false, cache: false, url: "../html/main_page_manager/add_task.html",dataType:"html",
+				success: function(result){
+					//$("#l_menu_2").append("aici vin taskurile grupate pe echipe");//clear l_menu
+					$("#scroll_container").html(result);
+				},
+				error: function(){
+					console.log("request failed");
+					error("eroare de retea");
+				}
+			});
 		});
-		console.log("tasks clicked");
+		
+		$("#spread_tasks").click(function(){//la lick pe spread tasks
+			$.ajax({ type: "POST", async: false, cache: false, url: "../php/imparte_taskuri.php",dataType:"html",
+				success: function(result){
+					console.log(result);
+				},
+				error: function(){
+					console.log("request failed");
+					error("eroare de retea");
+				}
+			});
+		});
+		//load all tasks unallocated
+		load_unallocated_tasks();
 	});
+	
 	//marius code
 	mydiv2 = $("#scroll_container");
 	$("#acount_setings").click(function load_scroll_container(){

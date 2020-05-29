@@ -14,7 +14,8 @@
 		<link rel="stylesheet" href="../css/jquery-ui.css">
 		<link rel="stylesheet" href="../css/select2_min.css">
 		<link rel="stylesheet" href="../css/custome_select.css">
-
+	
+		<script src="../js/manager/load_unallocated_tasks.js"></script><!--load unalocated tasks fot tasks submenu-->
 		<script src="../js/lib/jquery-3.5.0.js"></script>
 		<script src="../js/lib/notify.js"></script><!--pentru norificări-->
 		<script src="../js/lib/jquery-ui.js"></script>

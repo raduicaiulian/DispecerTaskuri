@@ -51,6 +51,7 @@
 		</select>
 	</div>
 		<input id="submit" type="submit">
+
 <script>
 $(document).ready(function() {
 
@@ -162,6 +163,7 @@ var error=function(msg){$.notify(msg, {//asign error pop-up to use later
 					error("Un task cu acest nume există deja în baza de date!");
 				if(result==0)
 					succes_notify("task adăugat cu succes!");
+				load_unallocated_tasks();//actualizare meniul lateral cu taskuri nealocate
 			},
 			error: function(){
 				console.log("request failed");
