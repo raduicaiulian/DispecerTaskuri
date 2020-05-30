@@ -15,7 +15,6 @@ body {
 	text-align: center;
 }
 .top_menu li{
-	float: center;
 	display: inline-block;
 }
 .top_menu li:nth-of-type(5){
@@ -123,6 +122,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	height: 100%;
 	overflow-y: auto;
 	text-align: center;
+	position: relative;
 }
 
 .addSkill {
@@ -171,6 +171,9 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 #plus_sign{
 	width: 60px;
 	margin-top: 20px;
+	display: block;
+	margin: 0 auto;
+	padding-top: 10px;
 }
 #team_data{
 	margin-top: 40px;
@@ -190,13 +193,25 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 #employees{
 	margin-top: 40px;
 	display: inline-grid;
-	grid-template-columns: auto auto auto;
+	grid-template-columns: auto auto;
 	grid-column-gap: 12px;	
+	grid-row-gap: 35px;
 }
 .employee{
+	text-align: left;
 	background-color:black;
 	color: white;
+	line-height: 30px;
+	padding: 10px;
+	border-radius: 10px;
 }
+
+#employee_username{
+	padding: 8px 10px;
+    margin: 10px auto;
+	display: block;
+}
+
 .task{
 	position: relative;
 	border: solid 2px red;
@@ -237,4 +252,24 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	float: right;
 	border-left: solid 2px black;
 	word-wrap: break-word;
+}
+.employees_skils{
+	color: white;
+	text-align: left;
+	background: black;
+	line-height: 25px;
+	padding: 15px;
+	border-radius: 10px;
+	position: relative;
+}
+.skills_lable{
+	position: absolute;
+}
+.add_emp_skill{
+	width: 30px;
+	display: block;
+	position: absolute;
+	bottom: 8px;
+	transform: translatex(-50%);
+	left: 50%;
 }

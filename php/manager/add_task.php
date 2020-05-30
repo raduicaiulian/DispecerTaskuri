@@ -11,6 +11,7 @@
 	$time=$_POST['time'];
 	$suggestions=$_POST['suggestions'];
 	$priority=$_POST['priority'];
+	//!!!!!!!!!!!!!!!!!!!!!mai trebuie validari
 	/*print_r($nume_task);
 	print_r($team_id);
 	print_r($skills);

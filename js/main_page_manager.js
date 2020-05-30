@@ -1,6 +1,15 @@
 //if(!$.active){//în cazul în care deja există o cerere în procesare evită lansarea unei alte cereri până ce nu se termină cererea prfecedentă
 $(document).ready(function() {//toate listenerele din pagina de manager
 
+	//functie temporară
+	remove_skill=function(this_ptr){//remove skill from skill list
+		console.log($(".skill").index($(this_ptr).parent()));
+		$(this_ptr).parent().remove();
+		//console.log(obj.attr("src"));
+		//	console.log($("#skill").index());
+	};
+	//functie temporară
+
 	cache=false;//set to false on debug, true in production
 	mydiv = $("#l_menu_2");
 	var error=function(msg){$.notify(msg, {//asign error pop-up to use later
@@ -35,20 +44,52 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 					$.ajax({type: "POST", async: false, cache: false, url: "../php/manager/get_team_data.php", data: {team_id: team_id},
 						dataType:"json",
 						success: function(res){
+							
 							$("#scroll_container").empty();
 							team_data=$("<div id='team_data'></div>");//grid
-							team_data.append("<div class='team_info'>Team name<br>"+result[team_index]["team_name"]+"</div>");
-							team_data.append("<div class='team_info'>Count of teammate:<br>"+result[team_index]['emp_cnt']+"</div>");
+							team_data.append("<div class='team_info'>Team name:<br>"+result[team_index]["team_name"]+"</div>");
 							team_data.append("<div class='team_info'>Max level of task dificulty:<br>"+result[team_index]['max_level']+"</div>");
 							$("#scroll_container").append(team_data);
 							$("#scroll_container").append("<p id='team_employee'>Team employees:</p>");
-							emp_list=$("<div id='employee_list'>");//a div where we place all employee
-							e=$("<div id='employees'></div>");//aorher grid
+							e=$("<div id='employees'></div>");//emplyees grid
+							
 							for( var i = 0 ; i <res.length ; i++){
-								e.append("<div class='employee'>nume:"+res[i]["nume"]+"<br>prenume:"+res[i]["prenume"]+"<br>username:"+res[i]["username"]+"</div>"); 
+								emp=$("<div class='employee'><span style='position: absolute; color: black; margin-top: -35px;'>date angajat</div></div>");
+								emp.append("nume<span style='float: right; display: block;margin-left: 100px;'>"+res[i]["nume"]+"</span><br>");
+								emp.append("prenume<span style='float: right; display: block;margin-left: 100px;'>"+res[i]["prenume"]+"</span><br>");
+								emp.append("username<span style='float: right; display: block;margin-left: 100px;'>"+res[i]["username"]+"</span><br>");
+								emp.append("email<span style='float: right; display: block;margin-left: 100px;'>"+res[i]["mail"]+"</span>"); 
+								e.append(emp);
+								//request to get emplyee skills(-----------pobleme la refresh)
+								$.ajax({type: "POST", async: false, cache: false, url: "../php/manager/get_employee_skills.php", data: {team_id: team_id, user_id: res[i]['id'] },
+									dataType:"json",
+									success: function(resp){
+											emp_skills=$("<div class='employees_skils'><span style='position: absolute; color: black; margin-top: -35px;'>skilluri</div>")
+											if(resp.length>0){
+												for( var j = 0 ; j <resp.length ; j++){
+													emp_skills.append(resp[j]['nume_skill']);
+													emp_skills.append("<span style='float: right; display: block;margin-left: 100px;'>"+resp[j]['level']+"</span><br>");
+												}
+											}else{
+												emp_skills.append("This employee has no skills, please add some!");
+											}
+											emp_skills.append("<img class='add_emp_skill' src='../images/plus_sign.png'>");
+											e.append(emp_skills);
+											$(document).on('click', ".add_emp_skill",function(){
+												//console.log($(".employees_skils").index($(this)));//index of add skill plpus sign
+												console.log($(this).index());
+												//console.log(res[$(".employees_skils").index($(this))]["id"]);//id user pentru care trebuie adăugate skilurile
+												//$(".add_emp_skill:eq("+$(".employees_skils").index($(this))+")").before('<div class="skill"><select class="limbaj"name="Limbaj"><option value="1">Limbaj</option></select><select class="level"><option>Level</option></select><img class="skill_rm" onclick="remove_skill(this)" style="width: 20px" src="../images/x.png"></div>');
+											}); 	
+											
+											
+//---------------------------------------in lucru											
+									}
+								});
+								
 							}
-							emp_list.append(e);	
-							$("#scroll_container").append(emp_list);
+							
+							$("#scroll_container").append(e);
 							
 							$("#scroll_container").append("<img id='plus_sign' src='../images/plus_sign.png'>");
 							$("#plus_sign").click(function(){//la click pe semnul de add employee to team
@@ -75,7 +116,8 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 									}
 								});
 							} else {//if #employee_username does not exist
-								$("#plus_sign").before('<br><input id="employee_username" type="text" placeholder="username employee" autocomplete="off"><br>');
+								$("#plus_sign").before('<input id="employee_username" type="text" placeholder="username employee" autocomplete="off">');
+								$("#employee_username").focus();
 							}
 								
 							});
