@@ -23,7 +23,7 @@ $(document).ready(function(){
 						elem.setAttribute('class','user_image');
 						elem.setAttribute("src","../images/x.png");
 						divitem.append(elem);
-					mydiv.append(divitem);
+						mydiv.append(divitem);
 			}
 			console.log(result);
 			$(".user_image").click(function(){
@@ -97,18 +97,22 @@ $(document).ready(function(){
 			newselect.setAttribute("id","dropdownstyle1");
 			newselect.setAttribute('onchange','handleSelectUserTask("dropdownstyle1","dropdownstyle2")'); // listener embeeded
 
+			newOption = document.createElement("option");
+			newOption.setAttribute('class','team_selector');
+			newOption.setAttribute('value', "0");
+			newOptionVal = document.createTextNode("Toate Echipele");
+			newOption.appendChild(newOptionVal);
+			newselect.insertBefore(newOption,newselect.firstChiled);
+
 			for(var i=0;i<result.length;i++)
 			{
 				newOption = document.createElement("option");
 				newOption.setAttribute('class','team_selector');
 				newOption.setAttribute('value', result[i]['id']);
-
 				newOptionVal = document.createTextNode(result[i]['team_name']);
-
 				newOption.appendChild(newOptionVal);
 				newselect.insertBefore(newOption,newselect.lastChiled);
 			}
-
 			ceva_div.append(newselect);
 
 
@@ -116,6 +120,12 @@ $(document).ready(function(){
 			newselect.setAttribute("id","dropdownstyle2");
 
 			newselect.setAttribute('onchange','handleSelectUserTask("dropdownstyle1","dropdownstyle2")'); // listener embeeded
+
+			newOption = document.createElement("OPTION");
+			newOption.setAttribute('class','sort_selector');
+			newOptionVal = document.createTextNode('Default');
+			newOption.appendChild(newOptionVal);
+			newselect.insertBefore(newOption,newselect.firstChiled);
 
 			newOption = document.createElement("OPTION");
 			newOption.setAttribute('class','sort_selector');
@@ -128,6 +138,7 @@ $(document).ready(function(){
 			newOptionVal = document.createTextNode('Deadline');
 			newOption.appendChild(newOptionVal);
 			newselect.insertBefore(newOption,newselect.firstChiled);
+
 			ceva_div.append(newselect);
 			mydiv.append(ceva_div);
 

@@ -114,6 +114,7 @@ $(document).ready(function(){
 			newOptionVal = document.createTextNode('Deadline');
 			newOption.appendChild(newOptionVal);
 			newselect.insertBefore(newOption,newselect.firstChiled);
+
 			ceva_div.append(newselect);
 			mydiv.append(ceva_div);
 

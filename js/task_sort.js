@@ -27,9 +27,20 @@ function handleSelectUserTask(id_first_select, id_secound_select){
 					spanelement.append(result[i]['deadline']);
 					divitem.append(spanelement);
 					divitem.append('\n');
-					mydiv.append(divitem);
+            var elem = document.createElement('img');
+            elem.setAttribute('class','user_image');
+            elem.setAttribute("src","../images/x.png");
+            divitem.append(elem);
+            mydiv.append(divitem);
 				//}
 			}
+      $(".user_image").click(function(){
+				    // id = cheia care va ajunge in php, iar result[id] este valoarea din javascript
+				$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))]["id_task"]}, success: function(result2){
+					console.log(result2);
+				}});
+				$(this).parent().remove();
+			});
 			$(".a1").click(function(){
 				$("#scroll_container").empty();
 				indexElement=$(this).index();
