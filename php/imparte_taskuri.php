@@ -66,6 +66,7 @@ t1.id = t2.user_id;";//toti userii pentru echipa respectiva
 							$result_min_level_echipa=$conn->query($sql_min_level_echipa);
 							$r_min_level_echipa = mysqli_fetch_assoc($result_min_level_echipa);
 							print_r($r_workload_angajat['workload']);
+							
 							if($r_workload_angajat['workload']+r_task_detail[$i]['level']<=r_min_level_echipa['max_level']){
 								print_r("te sparg");
 								//sql update , iti dam id task si id user, trebuie alocat task-ul in baza de date.
