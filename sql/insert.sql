@@ -23,9 +23,9 @@ INSERT INTO task(id, nume, descriere, deadline, time, sugestii, prioritate, team
 #INSERT INTO skills_of_team(team_id, nume_skill) VALUES (2,"Python");
 #INSERT INTO skills_of_team(team_id, nume_skill) VALUES (2,"Go");
 #team_employee(tabela noua)
-INSERT INTO team_employee(team_id, user_id) VALUES (1,1);# angajat_1_in echipa Front-End_devs
-INSERT INTO team_employee(team_id, user_id) VALUES (2,2);#vlad123_in echipa PROGRAMATORII_RAPIZI
-INSERT INTO team_employee(team_id, user_id) VALUES (1,2);#vlad123_in echipa PROGRAMATORII_RAPIZI
+INSERT INTO team_employee(team_id, user_id, workload) VALUES (1,1,0);# angajat_1_in echipa Front-End_devs
+INSERT INTO team_employee(team_id, user_id, workload) VALUES (2,2,0);#vlad123_in echipa PROGRAMATORII_RAPIZI
+INSERT INTO team_employee(team_id, user_id, workload) VALUES (1,2,0);#vlad123_in echipa PROGRAMATORII_RAPIZI
 #skills
 INSERT INTO skill(id, level, nume_skill) VALUES ( 1, 5, "HTML");#skiluri necesare(referențiate din tabela skills_required)
 INSERT INTO skill(id, level, nume_skill) VALUES ( 2, 5, "CSS");
