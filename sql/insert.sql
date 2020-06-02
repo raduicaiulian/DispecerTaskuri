@@ -12,9 +12,9 @@ INSERT INTO user (id, nume, prenume, mail, manager, data, username, password) VA
 INSERT INTO team( id, team_name, manager_id, max_level) VALUES (1, "Front-End_devs",3,20 );
 INSERT INTO team( id, team_name, manager_id, max_level) VALUES (2, "PROGRAMATORII_RAPIZI",4,15 );
 #tasks
-INSERT INTO task(id, nume, descriere, deadline, time, sugestii, prioritate, team_id) VALUES (1, 'Pagina web frizerie','Avem nevoie de o pagină web pentru o frizerie ce dorește să prezinte clienților coafurile pe care ei le pot realiza și de unde clienții pot plasa comenzi','2020-12-03', '10:30:10','Nu folositi inline styl',0,1);
+INSERT INTO task(id, nume, descriere, deadline, time, sugestii, prioritate, team_id) VALUES (1, 'Pagina web frizerie','Avem nevoie de o pagină web pentru o frizerie ce dorește să prezinte clienților coafurile pe care ei le pot realiza și de unde clienții pot plasa comenzi','2020-12-03', '10:30:10','Nu folositi inline styl',5,1);
 INSERT INTO task(id, nume, descriere, deadline, time, sugestii, prioritate, team_id) VALUES (2, 'Script de administrare rețele sociale','avem nevoie de un script care îți permite plasarea automată de postări pe mai multe rețele de socializare  în scop publicitar','2021-12-01', '12:30:00','Vreau să arate bine!!!',4,2);
-INSERT INTO task(id, nume, descriere, deadline, time, sugestii, prioritate, team_id) VALUES (3, 'Script de administrare baza de date(nealocat)','no_description_1','2021-12-01', '12:30:00','Vreau să arate bine!!!',4,1);
+INSERT INTO task(id, nume, descriere, deadline, time, sugestii, prioritate, team_id) VALUES (3, 'Script de administrare baza de date(nealocat)','no_description_1','2021-12-05', '12:30:00','Vreau să arate bine!!!',3,1);
 INSERT INTO task(id, nume, descriere, deadline, time, sugestii, prioritate, team_id) VALUES (4, 'Script de administrare taskuri(nealocat)','no_description_2','2021-12-01', '12:30:00','Vreau să arate bine!!!',4,2);
 #skils_of_team
 #INSERT INTO skills_of_team(team_id, nume_skill) VALUES (1,"HTML");
