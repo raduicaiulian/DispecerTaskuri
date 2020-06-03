@@ -5,6 +5,8 @@ $id=$_SESSION['id'];
 $oldpass = mysqli_real_escape_string($conn,$_POST['oldpassword']);
 $newpass = mysqli_real_escape_string($conn,$_POST['newpassword']);
 $newpass2 = mysqli_real_escape_string($conn,$_POST['newpassword2']);
+if($oldpass==NULL || $newpass==NULL || $newpass2==NULL )
+	die("5");
 
 $hashedold= hash ("sha512",$oldpass);
 $sql="SELECT password FROM user WHERE id='".$id."';";

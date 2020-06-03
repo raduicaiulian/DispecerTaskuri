@@ -4,10 +4,13 @@ require '../db.php';
 $id=$_SESSION['id'];
 $oldpass = mysqli_real_escape_string($conn,$_POST['oldpassword2']);
 $mail = mysqli_real_escape_string($conn,$_POST['newmail']);
+if($oldpass==NULL || $mail==NULL)
+	die("5");
 $hashedold= hash ("sha512",$oldpass);
 $sql="SELECT password FROM user WHERE id='".$id."';";
 $result=$conn->query($sql);
 $row = mysqli_fetch_assoc($result);
+
 if($row['password']!=$hashedold)
 	die("1"); // nu corespunde cu parola veche
 /*

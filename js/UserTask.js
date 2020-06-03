@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	document.getElementById("btn1").addEventListener("click",function(){
+	document.getElementById("btn1").addEventListener("click",function (){
 
 		$.ajax({url: "../php/UserTasks.php", success: function(result){
 			$("#l_menu_2").empty();
@@ -7,28 +7,31 @@ $(document).ready(function(){
 			//console.log(result);
 			//throw new Error("Something went badly wrong!");  Pentru debug
 			result= JSON.parse(result);
-			for( var i =0 ; i <result.length ; i++)
+			//console.log(result);
+			for( var i =0 ; i <result[0].length ; i++)
 			{
 
 				mydiv = document.getElementById("l_menu_2");
 				var divitem = document.createElement('div');
 				divitem.setAttribute("class","a1");
-					divitem.append(result[i]['nume']);
+					divitem.append(result[0][i]['nume']);
 					var spanelement = document.createElement('span');
 					spanelement.setAttribute("class","data");
-					spanelement.append(result[i]['deadline']);
+					spanelement.append(result[0][i]['deadline']);
 					divitem.append(spanelement);
 					divitem.append('\n');
 						var elem = document.createElement('img');
 						elem.setAttribute('class','user_image');
 						elem.setAttribute("src","../images/x.png");
 						divitem.append(elem);
-					mydiv.append(divitem);
+						mydiv.append(divitem);
 			}
 			console.log(result);
 			$(".user_image").click(function(){
 				    // id = cheia care va ajunge in php, iar result[id] este valoarea din javascript
-				$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))]["id_task"]}, success: function(result2){
+						console.log(result[$(".user_image").index($(this))]);
+						console.log(result[$(".user_image").index($(this))][0]["id_task"]);
+						$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))][0]["id_task"]}, success: function(result2){
 					console.log(result2);
 				}});
 				$(this).parent().remove();
@@ -41,17 +44,21 @@ $(document).ready(function(){
 				mydiv = document.getElementById("scroll_container");
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_nume");
-				div.append(result[indexElement]['nume']);
+				div.append(result[0][indexElement]['nume']);
 				mydiv.append(div);
 
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_deadline");
-				div.append(result[indexElement]['deadline']);
+				div.append(result[0][indexElement]['deadline']);
 				mydiv.append(div);
+
+				//$.ajax({url: "../php/UserTasks.php", success: function(result){
+
+				//})
 
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_time");
-				div.append(result[indexElement]['time']);
+				div.append(result[0][indexElement]['time']);
 				mydiv.append(div);
 
 				/*var div = document.createElement('span');
@@ -65,7 +72,7 @@ $(document).ready(function(){
 				descriere.setAttribute("id","descriere");
 				descriere.append("Descriere");
 				div.append(descriere);
-				div.append(result[indexElement]['descriere']);
+				div.append(result[0][indexElement]['descriere']);
 				mydiv.append(div);
 
 				var div = document.createElement('div');
@@ -74,11 +81,15 @@ $(document).ready(function(){
 				sugestii.setAttribute("id","descriere");
 				sugestii.append("Sugestii");
 				div.append(sugestii);
-				div.append(result[indexElement]['sugestii']);
+				div.append(result[0][indexElement]['sugestii']);
 				mydiv.append(div);
 
-				//mydiv=$("#scroll_container");
-				//mydiv.append("<span class='descriere'>Descriere</span>");
+
+
+				var div = document.createElement('div');
+				div.setAttribute("class","complete_task");
+				div.append("Am terminat task-ul");
+				mydiv.append(div);
 
 			});
 
@@ -97,18 +108,22 @@ $(document).ready(function(){
 			newselect.setAttribute("id","dropdownstyle1");
 			newselect.setAttribute('onchange','handleSelectUserTask("dropdownstyle1","dropdownstyle2")'); // listener embeeded
 
+			newOption = document.createElement("option");
+			newOption.setAttribute('class','team_selector');
+			newOption.setAttribute('value', "0");
+			newOptionVal = document.createTextNode("Toate Echipele");
+			newOption.appendChild(newOptionVal);
+			newselect.insertBefore(newOption,newselect.firstChiled);
+
 			for(var i=0;i<result.length;i++)
 			{
 				newOption = document.createElement("option");
 				newOption.setAttribute('class','team_selector');
 				newOption.setAttribute('value', result[i]['id']);
-
 				newOptionVal = document.createTextNode(result[i]['team_name']);
-
 				newOption.appendChild(newOptionVal);
 				newselect.insertBefore(newOption,newselect.lastChiled);
 			}
-
 			ceva_div.append(newselect);
 
 
@@ -116,6 +131,12 @@ $(document).ready(function(){
 			newselect.setAttribute("id","dropdownstyle2");
 
 			newselect.setAttribute('onchange','handleSelectUserTask("dropdownstyle1","dropdownstyle2")'); // listener embeeded
+
+			newOption = document.createElement("OPTION");
+			newOption.setAttribute('class','sort_selector');
+			newOptionVal = document.createTextNode('Default');
+			newOption.appendChild(newOptionVal);
+			newselect.insertBefore(newOption,newselect.firstChiled);
 
 			newOption = document.createElement("OPTION");
 			newOption.setAttribute('class','sort_selector');
@@ -128,6 +149,7 @@ $(document).ready(function(){
 			newOptionVal = document.createTextNode('Deadline');
 			newOption.appendChild(newOptionVal);
 			newselect.insertBefore(newOption,newselect.firstChiled);
+
 			ceva_div.append(newselect);
 			mydiv.append(ceva_div);
 

@@ -34,7 +34,7 @@
 						<div class="spatiere_top">
 
 								<input class="button" id="submit" type="submit"  name="cerere_trimisa" value="Submit">
-								<a class="button" href="../html/inregistrare.html">Nu ai cont?</a>
+								<a class="button" href="../html/inregistrare.php">Nu ai cont?</a>
 						</div>
 			</form>
 		</div>
