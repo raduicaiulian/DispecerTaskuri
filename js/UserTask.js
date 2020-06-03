@@ -29,7 +29,9 @@ $(document).ready(function(){
 			console.log(result);
 			$(".user_image").click(function(){
 				    // id = cheia care va ajunge in php, iar result[id] este valoarea din javascript
-				$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))]["id_task"]}, success: function(result2){
+						console.log(result[$(".user_image").index($(this))]);
+						console.log(result[$(".user_image").index($(this))][0]["id_task"]);
+						$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))][0]["id_task"]}, success: function(result2){
 					console.log(result2);
 				}});
 				$(this).parent().remove();
@@ -49,11 +51,11 @@ $(document).ready(function(){
 				div.setAttribute("id","scroll_container_deadline");
 				div.append(result[0][indexElement]['deadline']);
 				mydiv.append(div);
-				
+
 				//$.ajax({url: "../php/UserTasks.php", success: function(result){
-					
+
 				//})
-				
+
 				var div = document.createElement('div');
 				div.setAttribute("id","scroll_container_time");
 				div.append(result[0][indexElement]['time']);
@@ -81,9 +83,9 @@ $(document).ready(function(){
 				div.append(sugestii);
 				div.append(result[0][indexElement]['sugestii']);
 				mydiv.append(div);
-				
-				
-				
+
+
+
 				var div = document.createElement('div');
 				div.setAttribute("class","complete_task");
 				div.append("Am terminat task-ul");
