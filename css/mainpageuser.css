@@ -56,6 +56,9 @@ body {
     border: solid 2px yellow;
     height: 25px;
 	position: relative;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
 }
 .data{
 	font-size: 12px;
@@ -121,12 +124,17 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	position: relative;
 	text-align: left;
 }
+#scroll_container_time{
+	margin-bottom: 50px;
+}
 #scroll_container_descriere, #scroll_container_sugestii{
-	margin: 50px auto;
-	width: 80%;
+	margin: 10px 0;
+	width: 45%;
 	text-align: center;
 	border: solid 2px darkorange;
 	word-wrap: break-word;
+	display: table-cell;
+	position: relative;
 }
 .user_image{
 	width: 20px;
@@ -137,6 +145,23 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 }
 #descriere{
 	position: absolute;
-	margin-top: -5px;
+	margin-top: -25px;
 	left: 20px;
+}
+.complete_task{
+    display: inline-block;
+    width: 150px;
+    margin: 0 auto;
+    padding: 8px;
+    font-size: 18px;
+    border: none;
+    text-decoration: none;
+    background-color: #a6a6a6;
+    color: #fff;
+	margin-top: 50px;
+}
+.complete_task:hover{
+	cursor: pointer;
+	transition: all 1s;
+	background-color: green;
 }
