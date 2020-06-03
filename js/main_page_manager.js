@@ -8,7 +8,10 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 		//console.log(obj.attr("src"));
 		//	console.log($("#skill").index());
 	};
+	
+	
 	//functie temporară
+	
 
 	cache=false;//set to false on debug, true in production
 	mydiv = $("#l_menu_2");
@@ -24,6 +27,36 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 		showDuration: 60,
 		globalPosition: 'top right'
 	});}
+	//temp ffffffffffffff
+	add_emp_skill=function(this_ptr, id, team_id){
+		index=$(".employees_skils").index($(this_ptr).parent());
+		skill_div=$(".employees_skils:eq("+index+") .add_emp_skill");
+		//console.log(skill_div);
+		if($(".skill").length==0)//daca inputul nu există
+			skill_div.before("<div class='skill'><br><input placeholder='skill' class='slill_name' style='margin: 0 auto; display: block;'><input  placeholder='level' class='level' style='margin: 0 auto; display: block;'></input><br></div>");
+		else{//la a doua apăsare a butonului(plus) de adaugat skilluri
+			//console.log($(".employees_skils:eq("+index+") .skill"));
+			skill=$(".employees_skils:eq("+index+") .skill .slill_name").val();
+			level=$(".employees_skils:eq("+index+") .skill .level").val();
+			$.ajax({url: "../php/manager/insert_user_skill.php",async: false, cache: false, data:{ id : id, team_id:team_id, skill: skill, level:level },/*dataType:"json",*/
+			success: function(result){
+				if(result=="0"){
+					succes_notify("skill adăugat cu succes");
+					//dacă este primul skill se șterge textul inițial
+					$(".employees_skils:eq("+index+") .skill").before(skill+"<span style='float: right; display: block;margin-left: 100px;'>"+level+"</span><br>");
+				}
+				else
+					error("eroare la inserare skill");
+				console.log(result);
+			}
+		});
+			$(".employees_skils:eq("+index+") .skill").remove();
+		}
+		
+		//console.log(res[$(".employees_skils").index($(this))]["id"]);//id user pentru care trebuie adăugate skilurile
+		//$(".add_emp_skill:eq("+$(".employees_skils").index($(this))+")").before('<div class="skill"><select class="limbaj"name="Limbaj"><option value="1">Limbaj</option></select><select class="level"><option>Level</option></select><img class="skill_rm" onclick="remove_skill(this)" style="width: 20px" src="../images/x.png"></div>'); 	
+	};
+	//tamp ffffffffffffff
 	
 	$( "#teams" ).click(function load_l_menu() { //Display teams in sidebar on click event
 		$("#l_menu > img").remove();//sterge imaginile butoane din partea stanga jos
@@ -52,7 +85,7 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 							$("#scroll_container").append(team_data);
 							$("#scroll_container").append("<p id='team_employee'>Team employees:</p>");
 							e=$("<div id='employees'></div>");//emplyees grid
-							
+							//console.log(result);
 							for( var i = 0 ; i <res.length ; i++){
 								emp=$("<div class='employee'><span style='position: absolute; color: black; margin-top: -35px;'>date angajat</div></div>");
 								emp.append("nume<span style='float: right; display: block;margin-left: 100px;'>"+res[i]["nume"]+"</span><br>");
@@ -73,14 +106,11 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 											}else{
 												emp_skills.append("This employee has no skills, please add some!");
 											}
-											emp_skills.append("<img class='add_emp_skill' src='../images/plus_sign.png'>");
+											id=res[i]['id'];
+											console.log(team_id);
+											emp_skills.append("<img class='add_emp_skill' onclick='add_emp_skill(this, "+id+","+team_id+")' src='../images/plus_sign.png'>");
 											e.append(emp_skills);
-											$(document).on('click', ".add_emp_skill",function(){
-												//console.log($(".employees_skils").index($(this)));//index of add skill plpus sign
-												console.log($(this).index());
-												//console.log(res[$(".employees_skils").index($(this))]["id"]);//id user pentru care trebuie adăugate skilurile
-												//$(".add_emp_skill:eq("+$(".employees_skils").index($(this))+")").before('<div class="skill"><select class="limbaj"name="Limbaj"><option value="1">Limbaj</option></select><select class="level"><option>Level</option></select><img class="skill_rm" onclick="remove_skill(this)" style="width: 20px" src="../images/x.png"></div>');
-											}); 	
+											
 											
 											
 //---------------------------------------in lucru											
