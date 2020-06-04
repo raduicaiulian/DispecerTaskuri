@@ -235,7 +235,8 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 		$("#spread_tasks").click(function(){//la lick pe spread tasks
 			$.ajax({ type: "POST", async: false, cache: false, url: "../php/imparte_taskuri.php",dataType:"html",
 				success: function(result){
-					console.log(result);
+					//console.log(result);
+					$("#tasks").trigger( "click" );
 				},
 				error: function(){
 					console.log("request failed");
