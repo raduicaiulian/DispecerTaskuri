@@ -65,7 +65,7 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 				$("#l_menu_2").empty();//sterge contentul din meniul lateral
 				for( var i = 0 ; i <result.length ; i++){
 					div=$("<div class='team_slot'></div>");
-					div.append(" <p  class='team_name'> <img class='remove_team' style='width:20px;' src='../images/x.png'> <img class='team_img' src='../images/team.png'>"+result[i]['team_name'] +"</p><span class='emp_cnt'>"+result[i]['emp_cnt']+"</span><span class='team_level'>max level:"+ result[i]['max_level']);
+					div.append(" <p  class='team_name'>  <img class='team_img' src='../images/team.png'>"+result[i]['team_name'] +"</p><span class='emp_cnt'>"+result[i]['emp_cnt']+"</span><span class='team_level'>max level:"+ result[i]['max_level']);
 					mydiv.append(div);
 				}
 				//remove team listener
@@ -235,7 +235,8 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 		$("#spread_tasks").click(function(){//la lick pe spread tasks
 			$.ajax({ type: "POST", async: false, cache: false, url: "../php/imparte_taskuri.php",dataType:"html",
 				success: function(result){
-					console.log(result);
+					//console.log(result);
+					$("#tasks").trigger( "click" );
 				},
 				error: function(){
 					console.log("request failed");

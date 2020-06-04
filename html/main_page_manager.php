@@ -30,7 +30,7 @@
 			<li><a id="tasks" href="#">Tasks</a></li>
 			<li><a id="teams" href="#">Teams</a></li>
 			<li><a id="acount_setings" href="#">Account setings</a></li>
-			<li><a id="neralocat" href="#">Ne Alocat</a></li>
+			<!--<li><a id="neralocat" href="#">Ne Alocat</a></li>-->
 			<li><a href="../php/logout.php">Logout</a></li>
 		</ul>
 		<div id="l_menu" class="dragg">

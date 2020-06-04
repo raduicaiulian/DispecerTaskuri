@@ -11,16 +11,21 @@ body {
 	margin: 0;
 	padding: 0;
 	overflow: hidden;
-	background-color: #333333;
+	background-color: black;
 	text-align: center;
 }
 .top_menu li{
 	display: inline-block;
 }
-.top_menu li:nth-of-type(5){
+.top_menu li:nth-of-type(4){
 	float: right;
 	
 }
+/*
+#neralocat{
+	display: none;
+}
+*/
 .top_menu li a{
 	display: block;
 	color: white;
@@ -42,7 +47,7 @@ body {
 #l_menu_2{
 	overflow-y: scroll;
 	height: 90%;
-	background-color: #fff;
+	background-color: black;;
 	scrollbar-width: thin;
 }
 
@@ -53,7 +58,7 @@ body {
 	position: absolute;
 	right: 0;
 	height: calc(100% - 48.400px);
-	background-color: #d5bfbf;
+	background-color: #2d2626;
 	display:inline-block;
 }
 
@@ -148,9 +153,10 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 }
 .team_slot{
 	padding: 12px 0;
-    border: solid 1px black;
+    border: solid 1px white;
 	font-size: 16px;
 	position: relative;
+	color: white;
 }
 .team_name{
 	  word-wrap: break-word;
@@ -248,7 +254,7 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 
 .task{
 	position: relative;
-	border: solid 2px red;
+	border: solid 2px white;
 	padding: 14px 10px;
 }
 .date{
@@ -270,14 +276,14 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 .container_descriere{
 	position:relative;
 	overflow: auto;
-	background: red;
+	background: white;
 	width:90%;
 }
 .descriere{
 	position: relative;
 	width: 48%;
 	float: left;
-	border-right: solid 2px black; 
+	/*border-right: solid 2px black;*/ 
 	word-wrap: break-word;
 }
 .sugestie{
