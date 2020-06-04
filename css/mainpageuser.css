@@ -178,7 +178,8 @@ background-color: #00520c;
 #scroll_container_limbaje, #scroll_container_level{
 	margin: 15px 0;
 	text-align: center;
-	border: solid 2px darkorange;
+	border: solid 2px black;
+	background-color: red;
 	word-wrap: break-word;
 	position: relative;
 
@@ -190,7 +191,9 @@ background-color: #00520c;
 	grid-column-gap: 12px;
 	grid-row-gap: 35px;
 }
+
 #new_line2{
+	background-color: #2d2626;
 	margin-top: 40px;
 	display: inline-grid;
 	grid-template-columns: auto auto auto auto;
