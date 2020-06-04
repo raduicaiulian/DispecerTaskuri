@@ -128,13 +128,13 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	margin-bottom: 50px;
 }
 #scroll_container_descriere, #scroll_container_sugestii{
-	margin: 10px 0;
-	width: 45%;
+	margin: 15px 0;
+	width: 100%;
 	text-align: center;
 	border: solid 2px darkorange;
 	word-wrap: break-word;
-	display: table-cell;
 	position: relative;
+	display:inline-grid;
 }
 .user_image{
 	width: 20px;
@@ -164,4 +164,29 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	cursor: pointer;
 	transition: all 1s;
 	background-color: green;
+}
+
+#scroll_container_limbaje, #scroll_container_level{
+	margin: 15px 0;
+	text-align: center;
+	border: solid 2px darkorange;
+	word-wrap: break-word;
+	position: relative;
+
+}
+#new_line{
+	margin-top: 40px;
+	display: inline-grid;
+	grid-template-columns: 50% 50%;
+	grid-column-gap: 12px;
+	grid-row-gap: 35px;
+}
+#new_line2{
+	margin-top: 40px;
+	display: inline-grid;
+	grid-template-columns: auto auto auto auto;
+	grid-column-gap: 10px;
+	grid-row-gap: 10px;
+	width: 100%;
+	padding: 0 10px;
 }

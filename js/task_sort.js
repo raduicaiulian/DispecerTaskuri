@@ -71,6 +71,44 @@ function handleSelectUserTask(id_first_select, id_secound_select){
 				div.setAttribute("id","scroll_container_sugestii");
 				div.append(result[indexElement]['sugestii']);
 				mydiv.append(div);
+				
+				$.ajax({url: "../php/skill_necesare_task.php", async: false,data:{php_id_task:result[indexElement]['id']}, success: function(result2){
+					
+					result2= JSON.parse(result2);
+					console.log(result2);
+					$("#scroll_container").append('<br>');
+				
+				var divmare = document.createElement('div');
+				divmare.setAttribute('id','new_line2');
+				
+				for(var i=0;i<result2.length;i++){
+					
+					var div = document.createElement('div');
+					div.setAttribute("id","scroll_container_limbaje");
+					var limbaje = document.createElement('span');
+					limbaje.setAttribute("id","limbaje");
+					limbaje.append(result2[i]['nume_skill']);
+					div.append(limbaje);
+					divmare.append(div);
+					
+					var div = document.createElement('div');
+					div.setAttribute("id","scroll_container_level");
+					var level = document.createElement('span');
+					level.setAttribute("id","limbaje_si_level");
+					level.append(result2[i]['level']);
+					div.append(level);
+					divmare.append(div);
+					mydiv.append(divmare);
+				}
+				
+				$("#scroll_container").append('<br>');
+					
+				}});
+				var div = document.createElement('div');
+				div.setAttribute("class","complete_task");
+				div.append("Am terminat task-ul");
+				mydiv.append(div);
+
 			});
 
 		}});
