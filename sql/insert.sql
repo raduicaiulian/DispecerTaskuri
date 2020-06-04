@@ -19,7 +19,7 @@ INSERT INTO user (id, nume, prenume, mail, manager, data, username, password) VA
 (8, 'Angajat5', 'Parola123', 'maris8@gmail.com', 0, '2020-02-21', 'angajat5', '38b28c51aaa2349f5969968d699a0e24fe40a1ea4159dd69c78ad905e8f2bc834d34be2a8cf7d117ca3e89abfda08d800fdff817fa1f9e1bb47ea5fb572cf1ba');
 
 #teams
-INSERT INTO team( id, team_name, manager_id, max_level) VALUES (1, "Front-End_devs",3,20 );
+INSERT INTO team( id, team_name, manager_id, max_level) VALUES (1, "Front-End_devs",4,20 );
 INSERT INTO team( id, team_name, manager_id, max_level) VALUES (2, "PROGRAMATORII_RAPIZI",4,20 );
 INSERT INTO team( id, team_name, manager_id, max_level) VALUES (3, "A treia echipa",4,25);#Dragos a modifica aici
 
