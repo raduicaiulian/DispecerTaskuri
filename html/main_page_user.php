@@ -9,7 +9,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		
+
 		<link rel="stylesheet" href="../css/mainpageuser.css">
 		<link rel="stylesheet" href="../css/jquery-ui.css">
 		<link rel="stylesheet" href="../css/select2_min.css" >
@@ -26,26 +26,21 @@
 	</head>
 <body>
 	<ul class="top_menu">
-		<li><a id="btn1" href="#">Tasks</a></li>
-		<li><a href="page2">Button2</a></li>
-		<li><a id="teams" href="#">Teams</a></li>
-		<li><a id="btn4" href="#">Extra Tasks</a></li>
-		<li><a href="../php/logout.php">Logout</a></li>
+		<li class="li"><a id="btn1" href="#">Tasks</a></li>
+		<li class="li"><a id="teams" href="#">Teams</a></li>
+		<li class="li"><a id="btn4" href="#">Extra Tasks</a></li>
+		<li class="li2"><a href="../php/logout.php">Logout</a></li>
 	</ul>
 		<div id="l_menu" class="dragg">
 				<div id="l_menu_2">
-					<div class="a1" name="jorjel"> Ana are mere, mere are ana, da da daaaaa mere are ana
-						</div>
-						<div id="a1"> CEvaaaaa</div>
-						<div id="a1"> Ceva</div>
 				</div>
 					<div id="l_menu_3">
-					
+
 					</div>
 		</div>
 	<div id="workspace">
 		<div id="scroll_container">
-			
+
 		</div>
 	</div>
 					<script src="../js/test_select.js"></script>

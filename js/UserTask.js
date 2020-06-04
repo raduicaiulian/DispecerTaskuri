@@ -34,6 +34,7 @@ $(document).ready(function(){
 						$.ajax({url: "../php/remove_user_task.php",method:"POST" ,data:{id: result[$(".user_image").index($(this))][0]["id_task"]}, success: function(result2){
 					console.log(result2);
 				}});
+
 				$(this).parent().remove();
 			});
 			$(".a1").click(function(){
@@ -91,7 +92,24 @@ $(document).ready(function(){
 				div.append("Am terminat task-ul");
 				mydiv.append(div);
 
+				console.log(result);
+				
+				$("#complete_task").click(function(){
+					console.log(result);
+					// console.log(indexElement=$(this).index());
+					// console.log(result[0][indexElement]);
+					// console.log(result[$(".complete_task").index($(this))]);
+					// console.log(result[$(".complete_task").index($(this))][0]["id_task"]);
+				// $.ajax({type: "GET",url: "../php/complete_task.php", async: false,date:{"id_task":id_task}, success: function(result){
+				// 	console.log("\n\nam intart\n\n");
+				// });
+
 			});
+
+
+			});
+
+
 
 		}});
 
