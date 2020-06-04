@@ -17,10 +17,15 @@ body {
 .top_menu li{
 	display: inline-block;
 }
-.top_menu li:nth-of-type(5){
+.top_menu li:nth-of-type(4){
 	float: right;
 	
 }
+/*
+#neralocat{
+	display: none;
+}
+*/
 .top_menu li a{
 	display: block;
 	color: white;
