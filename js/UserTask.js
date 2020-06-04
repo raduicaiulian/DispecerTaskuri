@@ -88,7 +88,6 @@ $(document).ready(function(){
 				divmare.append(div)
 				mydiv.append(divmare);
 				$.ajax({url: "../php/skill_necesare_task.php", async: false,data:{php_id_task:result[indexElement]['id']}, success: function(result2){
-					
 					result2= JSON.parse(result2);
 					console.log(result2);
 					$("#scroll_container").append('<br>');

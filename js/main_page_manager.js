@@ -8,7 +8,10 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 		//console.log(obj.attr("src"));
 		//	console.log($("#skill").index());
 	};
+	
+	
 	//functie temporară
+	
 
 	cache=false;//set to false on debug, true in production
 	mydiv = $("#l_menu_2");
@@ -24,6 +27,36 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 		showDuration: 60,
 		globalPosition: 'top right'
 	});}
+	//temp ffffffffffffff
+	add_emp_skill=function(this_ptr, id, team_id){
+		index=$(".employees_skils").index($(this_ptr).parent());
+		skill_div=$(".employees_skils:eq("+index+") .add_emp_skill");
+		//console.log(skill_div);
+		if($(".skill").length==0)//daca inputul nu există
+			skill_div.before("<div class='skill'><br><input placeholder='skill' class='slill_name' style='margin: 0 auto; display: block;'><input  placeholder='level' class='level' style='margin: 0 auto; display: block;'></input><br></div>");
+		else{//la a doua apăsare a butonului(plus) de adaugat skilluri
+			//console.log($(".employees_skils:eq("+index+") .skill"));
+			skill=$(".employees_skils:eq("+index+") .skill .slill_name").val();
+			level=$(".employees_skils:eq("+index+") .skill .level").val();
+			$.ajax({url: "../php/manager/insert_user_skill.php",async: false, cache: false, data:{ id : id, team_id:team_id, skill: skill, level:level },/*dataType:"json",*/
+			success: function(result){
+				if(result=="0"){
+					succes_notify("skill adăugat cu succes");
+					//dacă este primul skill se șterge textul inițial
+					$(".employees_skils:eq("+index+") .skill").before(skill+"<span style='float: right; display: block;margin-left: 100px;'>"+level+"</span><br>");
+				}
+				else
+					error("eroare la inserare skill");
+				console.log(result);
+			}
+		});
+			$(".employees_skils:eq("+index+") .skill").remove();
+		}
+		
+		//console.log(res[$(".employees_skils").index($(this))]["id"]);//id user pentru care trebuie adăugate skilurile
+		//$(".add_emp_skill:eq("+$(".employees_skils").index($(this))+")").before('<div class="skill"><select class="limbaj"name="Limbaj"><option value="1">Limbaj</option></select><select class="level"><option>Level</option></select><img class="skill_rm" onclick="remove_skill(this)" style="width: 20px" src="../images/x.png"></div>'); 	
+	};
+	//tamp ffffffffffffff
 	
 	$( "#teams" ).click(function load_l_menu() { //Display teams in sidebar on click event
 		$("#l_menu > img").remove();//sterge imaginile butoane din partea stanga jos
@@ -32,9 +65,20 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 				$("#l_menu_2").empty();//sterge contentul din meniul lateral
 				for( var i = 0 ; i <result.length ; i++){
 					div=$("<div class='team_slot'></div>");
-					div.append("<p class='team_name'><img class='team_img' src='../images/team.png'>"+result[i]['team_name'] +"</p><span class='emp_cnt'>"+result[i]['emp_cnt']+"</span><span class='team_level'>max level:"+ result[i]['max_level']);
+					div.append(" <p  class='team_name'> <img class='remove_team' style='width:20px;' src='../images/x.png'> <img class='team_img' src='../images/team.png'>"+result[i]['team_name'] +"</p><span class='emp_cnt'>"+result[i]['emp_cnt']+"</span><span class='team_level'>max level:"+ result[i]['max_level']);
 					mydiv.append(div);
 				}
+				//remove team listener
+				$(".remove_team").click(function remove_team(){
+					i=$(".team_name").index($(this).parent());
+					
+					//jquery care face stergerea
+					//apelare reload_team_tetails();
+					//console.log(mydiv.index(this));
+					console.log(result[i]);
+					console.log(result[i]["id"]);
+					var result2=result[i]["id"];
+				});
 				//add team listener
 				$(".team_slot").click(function reload_team_tetails(this_ptr=false,team_index=false){//click on every team of sidebar
 					if(team_index==false)//dacă nu a fost pasată o echipă pentru care să fac refresh consider echipa pe care s-a dat click ca fiind echipa curentă
@@ -52,7 +96,7 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 							$("#scroll_container").append(team_data);
 							$("#scroll_container").append("<p id='team_employee'>Team employees:</p>");
 							e=$("<div id='employees'></div>");//emplyees grid
-							
+							//console.log(result);
 							for( var i = 0 ; i <res.length ; i++){
 								emp=$("<div class='employee'><span style='position: absolute; color: black; margin-top: -35px;'>date angajat</div></div>");
 								emp.append("nume<span style='float: right; display: block;margin-left: 100px;'>"+res[i]["nume"]+"</span><br>");
@@ -73,14 +117,11 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 											}else{
 												emp_skills.append("This employee has no skills, please add some!");
 											}
-											emp_skills.append("<img class='add_emp_skill' src='../images/plus_sign.png'>");
+											id=res[i]['id'];
+											console.log(team_id);
+											emp_skills.append("<img class='add_emp_skill' onclick='add_emp_skill(this, "+id+","+team_id+")' src='../images/plus_sign.png'>");
 											e.append(emp_skills);
-											$(document).on('click', ".add_emp_skill",function(){
-												//console.log($(".employees_skils").index($(this)));//index of add skill plpus sign
-												console.log($(this).index());
-												//console.log(res[$(".employees_skils").index($(this))]["id"]);//id user pentru care trebuie adăugate skilurile
-												//$(".add_emp_skill:eq("+$(".employees_skils").index($(this))+")").before('<div class="skill"><select class="limbaj"name="Limbaj"><option value="1">Limbaj</option></select><select class="level"><option>Level</option></select><img class="skill_rm" onclick="remove_skill(this)" style="width: 20px" src="../images/x.png"></div>');
-											}); 	
+											
 											
 											
 //---------------------------------------in lucru											
@@ -208,16 +249,25 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 	
 	//marius code
 	mydiv2 = $("#scroll_container");
+	
 	$("#acount_setings").click(function load_scroll_container(){
 		$.ajax({url: "../php/manager/account_settings.php",async: false, cache: false, dataType:"json",
 			success: function(result){
+				div3 = $("<div class='acc_details'></div>");
 				$("#l_menu_2").empty();
 				$("#scroll_container").empty();
-				for( var i = 0 ; i <result.length ; i++){
-					div=$("<div class='acc_details'></div>");
-					div.append("Nume: "+result[i]['nume'] + "<br></br>"+ "Prenume: "+result[i]['prenume']+ "<br></br>"+"Mail: "+ result[i]['mail']);
-					mydiv2.append(div);}
-				mydiv2.append("<button id='show_reset' type='button'>Reset your password</button>");
+				$("#acc_details").empty();	
+				div1=$("<div class='nume'></div>");
+				div1.append("Nume "+ "<br>" + result[0]['nume'] );
+				div8=$("<div class='prenume'></div>");
+				div8.append("Prenume "+ "<br>" + result[0]['prenume']);
+				div9=$("<div class='mail'></div>");
+				div9.append("Mail "+ "<br>" + result[0]['mail']);
+				div3.append(div1);
+				div3.append(div8);
+				div3.append(div9);	
+				mydiv2.append(div3);
+				mydiv2.append("<br></br>" +"<button id='show_reset' type='button'>Reset your password</button>");
 				$( "#show_reset" ).click(function show_reset(){//click pe butonul de schimbare parola din account setings
 					if ($("#old_password").length!=0){
 						oldpassword=$("#old_password").val();
@@ -226,8 +276,21 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 						$.ajax({ type: "POST", async: false, cache: false, url: "../php/manager/reset_password_ui.php", data: { oldpassword: oldpassword, newpassword: newpassword, newpassword2:newpassword2 },
 								success: function(data){
 									//la succes
+									
 							     	if(data=='0')
 										succes_notify("Parola schimbată cu succes!");
+									else if(data=='2')
+										error("Cele doua campuri parola noua nu corespund ");
+									else if(data=='3')
+										error("Parola este prea mica");
+									else if(data=='4')
+											error("Parola este prea mare");
+									else if(data=='1')
+											error("Parola nu corespunde cu cea veche");
+									
+									else{
+										error("Toate campurile sunt obligatorii");
+									}
 							 		$("#reset_input").remove();
 								},
 				  				error: function plm(){
@@ -237,6 +300,11 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 				  		});
 					}
 					else{
+						if($("#reset_input").length!=0){
+							$("#reset_input").remove();
+						}
+						
+							
 	   					 $("#show_reset").before('<div id="reset_input" ><br><input id="old_password" type="text" placeholder="old password" autocomplete="off"><br>'+
 	   					 '<br><input id="new_password" type="text" placeholder="new password" autocomplete="off"><br>'
 	   					 +'<br><input id="new_password2" type="text" placeholder="new password" autocomplete="off"><br></div>');
@@ -252,7 +320,15 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 								//la succes
 								if(data=='0')
 									succes_notify("Email-ul schimbat cu succes!");
+								else if(data=='1')
+									error("Parola nu corespunde cu cea veche");
+								else{
+									error("Toate campurile sunt obligatorii");
+									}
+								
+								
 					 			$("#reset_input").remove();
+								
 							},
 							error: function plm2(){
 								console.log("request failed");
@@ -261,6 +337,9 @@ $(document).ready(function() {//toate listenerele din pagina de manager
 						});
 					}
 					else{
+						if($("#reset_input").length!=0){
+							$("#reset_input").remove();
+						}
 						$("#show_reset").before('<div id="reset_input" ><br><input id="old_password2" type="text" placeholder="old password" autocomplete="off"><br>'+
 						'<br><input id="new_mail" type="text" placeholder="new mail" autocomplete="off"><br>');
 					}
