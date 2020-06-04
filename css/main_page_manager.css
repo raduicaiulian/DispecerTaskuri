@@ -205,7 +205,41 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	padding: 10px;
 	border-radius: 10px;
 }
-
+.acc_details{
+	margin-top: 40px;
+	display: inline-grid;
+	grid-template-columns: auto auto auto;
+	grid-column-gap: 12px;
+	width:80%;
+	
+}
+.nume{
+	text-align: left;
+	background-color:black;
+	color: white;
+	line-height: 30px;
+	padding: 10px;
+	border-radius: 10px;
+	text-align:center;
+}
+.prenume{
+	text-align: left;
+	background-color:black;
+	color: white;
+	line-height: 30px;
+	padding: 10px;
+	border-radius: 10px;
+	text-align:center;
+}
+.mail{
+	text-align: left;
+	background-color:black;
+	color: white;
+	line-height: 30px;
+	padding: 10px;
+	border-radius: 10px;
+	text-align:center;
+}
 #employee_username{
 	padding: 8px 10px;
     margin: 10px auto;
@@ -272,4 +306,44 @@ input[type="text"], input[type="password"], input[type="email"], textarea {/*cus
 	bottom: 8px;
 	transform: translatex(-50%);
 	left: 50%;
+}
+#show_reset{
+	
+	
+	font-size: 18px;
+	margin: 20px auto;
+	background: #000;
+	color: white;
+	border: 0;
+	padding: 14px;
+	margin-right: 10px;
+
+	
+}
+#show_rmail{
+	
+	font-size: 18px;
+	margin: 20px auto;
+	background: #000;
+	color: white;
+	border: 0;
+	padding: 14px;
+	margin-right: 10px;
+	
+}
+#show_reset:hover{
+	
+	
+	color: black;
+	background:white;
+	cursor:pointer;
+	
+}
+#show_rmail:hover{
+	
+	
+	color: black;
+	background:white;
+	cursor:pointer;
+	
 }
